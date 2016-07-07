@@ -189,7 +189,7 @@ str = "efgh"    // 此行Compiler會丟error警告
 
 * 打開optional(Unwrapp)
 
-  * 使用 `!` 來打開一個optional，因為當optional變數被當做參數時，它實際不是任何Int, String等的型態，method不會接受(除非該method宣告為接受 optional變數當參數)
+  * 使用 `!` 來打開一個optional，因為當optional變數被當做參數時，它實際不是任何Int, String等的型態，method不會接受(除非該method宣告為接受 optional變數當參數)；但若打開到 nil，會直接runtime error。
 
     ```swift
     var a: Int? = 9
