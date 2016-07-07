@@ -1,4 +1,4 @@
-﻿# Swift 讀書會 Week 1
+# Swift 讀書會 Week 1
 
 * Chp 1 - 環境設定
 * Chp 2 - Playground 教學
@@ -117,7 +117,7 @@ str = "efgh"    // 此行Compiler會丟error警告
 1. 在變數上按住「alt + 左鍵」點擊變數，會出現變數型別與宣告處
 2. 在變數上按住「command + 左鍵」點擊變數，會跳到宣告變數的地方
 3. 游標停留在型態宣告的地方，打開右側Utilites欄位，會出現Quick Help並顯示文件
-![Quick Help](http://i.imgur.com/axlV2ij.png)
+   ![Quick Help](http://i.imgur.com/axlV2ij.png)
 
 ---
 
@@ -166,3 +166,123 @@ str = "efgh"    // 此行Compiler會丟error警告
 1. compile: Swift為靜態語言，大多數行為在此確定，將code編譯為machine code
 2. package: 其實也算compile的一個階段，將各種資源(images, text)
 3. run: 在simulator上執行，程式的進入點為 `AppDelegate.swift`
+
+
+
+---
+
+
+
+# 額外討論－Optional
+
+
+
+* 一種宣告變數的型態( Int? != Int) 
+
+* 內容其實是一個enum，代表這個變數有可能為null，例
+
+  ```swift
+  var a: Int? = nil
+  var message: String! = "This varriable always has a value" // You know message always have a value
+  var notNil: String = nil // 這行compiler會報錯
+  ```
+
+* 打開optional(Unwrapp)
+
+  * 使用 `!` 來打開一個optional，因為當optional變數被當做參數時，它實際不是任何Int, String等的型態，method不會接受(除非該method宣告為接受 optional變數當參數)
+
+    ```swift
+    var a: Int? = 9
+    var intArray: [Int] = [1,2]
+    // append（）只接受Int
+    intArray.append(a!)
+    ```
+
+  * 或用 `let`來判斷optinal有沒有值
+
+    ```swift
+    var nullVar: String? = nil
+    // 假裝我們不知道nullVar是nil
+    if let str = nullVar {
+    	// nullVar如果有值會進到這裡
+    	print(str)
+    } else {
+    	// 但實際沒有，會走這裡
+      	print("this var is nil")
+    }
+    ```
+
+  * `guard` 是用在更易讀的code structure（相較 if … else …之下），可想做是不會中斷程式的`assert`，下面各是用if-else與guard的寫法
+
+    ```swift
+    // we don't want arg to be nil in this function
+
+    // if else case
+    func someFunc0(arg: Int?) {
+    	if arg == nil {
+    		print("arg is nil. We don't like it so do nothing")
+      		return
+    	} else {
+      		// 以下可以放心使用 arg! 而不crash了
+      		// ...
+    	}
+    }
+
+    // guard case
+    func someFunc1(arg: Int?) {
+    	guard let _ = arg else {
+      		print("arg is nil. We do not like it so do nothing")
+      		return // guard裡一定要以 return or break等結尾
+    	}
+    	
+    	// 以下可以放心使用 arg! 而不crash了
+    }
+    ```
+
+* Implicit unwrapped optional: 如果你**確定一變數在access時總是有值**，可以用這種方式來宣告optional，免去判讀為nil的程式碼，為了讓程式碼更簡潔(在減少一些安全性的程度下)
+
+  ```swift
+  let possibleString: String? = "An optional string."
+  let forcedString: String = possibleString! // requires an exclamation mark
+
+  let assumedString: String! = "An implicitly unwrapped optional string."
+  let implicitString: String = assumedString // no need for an exclamation mark
+
+  let iCantBeNil: Int! = nil // This is OK for compilor, but you will die in runtime.
+  ```
+
+* Optional Chaining: 可視為一種替代打開optional的方式
+
+  ```swift
+  class Person {
+      var residence: Residence?
+  }
+   
+  class Residence {
+      var numberOfRooms = 1
+  }
+
+  let john = Person()
+  // 下面這行會GG，因為residence 為 nil
+  let roomCount = john.residence!.numberOfRooms 
+
+  // 只好檢查一下，但我不想把residence unwrapp再去access numberOfRooms
+  if let roomCount = john.residence?.numberOfRooms {
+      print("John's residence has \(roomCount) room(s).")
+  } else {
+      print("Unable to retrieve the number of rooms.")
+  }
+
+  // 給residence 值
+  john.residence = Residence()
+
+  // 安心上路
+  print("John's residence has \(john.residence!.numberOfRooms) room(s).")
+  ```
+
+
+
+### Reference
+
+* [Swift 官方教學-Optionals](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309)
+* [愛恨交織的optional](http://www.appcoda.com.tw/swift-optional/)
