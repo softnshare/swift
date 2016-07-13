@@ -77,6 +77,11 @@ Stack – 視圖嵌入至堆疊視圖（stack view）。堆疊視圖是Xcode 7�
 
 ---
 
+# Autolayout Sample
+*https://youtu.be/3xzVdvh8AA0
+
+---
+
 # 使用堆疊視圖設計UI
 
 * 堆疊視圖提供一個簡化的介面，以行或列來佈局視圖的集合。在Keynote或者是微軟的Power Point，你可以將多個物件群組起來，讓它們可以使用一個單一物件來移動或調整大小。堆疊視圖提供了一個非常相似的功能。
@@ -88,11 +93,11 @@ Stack – 視圖嵌入至堆疊視圖（stack view）。堆疊視圖是Xcode 7�
 # StackView Sample
 
 * 排列方式
-  UIStackViewDistributionFill -填滿StackView高度或寬度
-  UIStackViewDistributionFillEqually -SubView平均分配高度或寬度
-  UIStackViewDistributionFillProportionally -依據SubView高度或寬度分配
-  UIStackViewDistributionEqualSpacing -SubView間之間距相等
-  UIStackViewDistributionEqualCentering -SubView中心之間距相等
+UIStackViewDistributionFill -填滿StackView高度或寬度
+UIStackViewDistributionFillEqually -SubView平均分配高度或寬度
+UIStackViewDistributionFillProportionally -依據SubView高度或寬度分配
+UIStackViewDistributionEqualSpacing -SubView間之間距相等
+UIStackViewDistributionEqualCentering -SubView中心之間距相等
 
 * https://youtu.be/o8J1SIWHk2Q
 
