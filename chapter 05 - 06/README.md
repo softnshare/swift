@@ -1,4 +1,4 @@
-﻿# Swift 讀書會 Week 2
+# Swift 讀書會 Week 2
 * Chp 5 - Auto Layout的介紹
 * Chp 6 - 使用堆疊視圖設計UI
 
@@ -78,7 +78,9 @@ Stack – 視圖嵌入至堆疊視圖（stack view）。堆疊視圖是Xcode 7�
 ---
 
 # Autolayout Sample
-*https://youtu.be/3xzVdvh8AA0
+
+* https://youtu.be/3xzVdvh8AA0
+* https://youtu.be/gEooGq4SsxI
 
 ---
 
