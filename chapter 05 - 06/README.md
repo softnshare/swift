@@ -102,6 +102,12 @@ UIStackViewDistributionEqualSpacing -SubView間之間距相等
 UIStackViewDistributionEqualCentering -SubView中心之間距相等
 
 * https://youtu.be/o8J1SIWHk2Q
+*
+
+---
+
+# 上課影片
+* https://youtu.be/v1zvPIWxcfA
 
 
 
